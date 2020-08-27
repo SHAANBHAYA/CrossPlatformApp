@@ -8,5 +8,5 @@ A simple way to create cross platform desktop python app.
   
   Course Outline : -
   
-  1. Introduction and Setup.
+  1. Introduction and Motivation.
   
