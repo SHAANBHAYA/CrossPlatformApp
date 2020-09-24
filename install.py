@@ -1,37 +1,35 @@
+"""
+Installs dependencies for the project.
+Supports the windows and osx operating systems.
+"""
+
 from pip._internal.cli import main
 import sys
 
-
-def install(dep):
+def install_packages(package_names):
     """
-    Installs the dependencies
-    :param dep: name of the dependencies
+    Installs all the packages in the package_names
+    :param package_names: list of all the packages
     """
-    ret = main.main(["install", dep])
-    if ret != 0:
-        raise Exception("Dependency %s not installed.Check stdout." % dep)
+    for package in package_names:
+        ret=main.main(["install", package])
+        if ret != 0:
+            raise Exception("Installation failed.Check logs")
 
-
-def install_from_list(list_of_dep):
-    """
-    Installs the dependencies in the list
-    :param list_of_dep: list of dependencies
-    """
-    for dep in list_of_dep:
-        install(dep)
-
-
-common = ["pywebview", "requests"]
-
-windows = []
-osx = []
+# Packages common in all the Operating systems.
+common_packages=["requests","pywebview"]
+# Packages specific for windows
+Windows_packages=[]
+# Pakcages specific for OSX
+OSX_Packages=[]
 
 if __name__ == '__main__':
-    # First install all the common dependencies
-    install_from_list(common)
+    # Install the common packages
+    install_packages(common_packages)
+    # Install OS dependent packages
     if sys.platform == "win32":
-        install_from_list(windows)
+        install_packages(Windows_packages)
     elif sys.platform == "darwin":
-        install_from_list(osx)
+        install_packages(OSX_Packages)
     else:
-        sys.stderr.write("The current platform=%s is not supported" % sys.platform)
+        raise Exception("Platform not supported")
