@@ -1,13 +1,18 @@
+"""
+Entry point for the application.
+"""
 import webview
 
-def window_render(heading,content):
+
+def render_window(title,content):
     """
-    Creates a window with supplied heading and content
+    Renders the content in a webview window.
+    :param title: Title of the window
+    :param content: html content to render
     """
-    webview.create_window(heading,html=content)
+    webview.create_window(title=title, html=content)
     webview.start()
 
 
-
 if __name__ == '__main__':
-    window_render(heading="Hello World",content="<h1>Hello World</h1>")
+    render_window("Hello World","<h1>Hello World</h1>")
