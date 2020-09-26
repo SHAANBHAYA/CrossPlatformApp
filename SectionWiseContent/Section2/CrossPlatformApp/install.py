@@ -17,11 +17,17 @@ def install_packages(package_names):
             raise Exception("Installation failed.Check logs")
 
 # Packages common in all the Operating systems.
-common_packages=["requests","pywebview"]
+common_packages=["requests","pywebview",
+                 "pyinstaller"]
 # Packages specific for windows
 Windows_packages=[]
 # Pakcages specific for OSX
 OSX_Packages=[]
+def check_prerequisites():
+    """
+    Checks if all the requirements are satisfied
+    """
+    pass
 
 if __name__ == '__main__':
     # Install the common packages
